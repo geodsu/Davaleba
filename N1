@@ -1,5 +1,3 @@
-package de.swirtz.kotlin.conventions
-
 data class Fraction(val numerator: Int, val denominator: Int) : Comparable<Fraction> {
 
     val decimal by lazy { numerator.toDouble() / denominator }
@@ -8,10 +6,10 @@ data class Fraction(val numerator: Int, val denominator: Int) : Comparable<Fract
 
     override fun toString() = "$numerator/$denominator"
 
-    //unary operators
+    //ერთიანი ოპერატორები
     operator fun unaryMinus() = Fraction(-this.numerator, this.denominator)
 
-    //binary operators
+    //ორობითი ოპერატორები
     operator fun plus(add: Fraction) =
         if (this.denominator == add.denominator) Fraction(this.numerator + add.numerator, denominator)
         else {
@@ -22,11 +20,11 @@ data class Fraction(val numerator: Int, val denominator: Int) : Comparable<Fract
 
     operator fun times(num: Int) = Fraction(numerator * num, denominator * num)
 
-    //increments
+    //ნამატები
     operator fun dec() = Fraction(this.numerator - 1, this.denominator)
 
 
-    //invoke convention
+    //ერთიანი ოპერატორები
     operator fun invoke(prefix: String = "") = println(prefix + toString())
 }
 
@@ -53,7 +51,7 @@ fun main(args: Array<String>) {
 
     var sum = Fraction(2, 3) + Fraction(3, 2)
     println("Sum: ${sum.decimal}")
-    //invoke
+    //მოწვევა
     sum("My invoke prefix: ")
     println("3/2 > 2/2: ${Fraction(3, 2) > Fraction(2, 2)}")
     println("1/2 <= 2/4: ${Fraction(1, 2) <= Fraction(2, 4)}")
